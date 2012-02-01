@@ -1,0 +1,7 @@
+---
+development:
+  adapter: mysql2
+  database: ssd_members_dev
+  username: root
+  password: sirhc444
+  
