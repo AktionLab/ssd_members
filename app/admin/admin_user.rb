@@ -18,7 +18,7 @@ ActiveAdmin.register AdminUser do
     end
   end
 
-  form do
+  form do |f|
     f.inputs "Member Details" do
       f.input :email
     end
