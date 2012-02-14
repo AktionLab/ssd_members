@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Member do
+  describe 'factories' do
+    it 'should have valid factories' do
+      Factory.build(:member).should be_valid
+    end
+  end
+
   describe 'validations' do
     it { should validate_presence_of(:account_category) }
     it { should validate_presence_of(:email) }
@@ -10,6 +16,10 @@ describe Member do
       before(:each) { Factory(:member) }
       it { should validate_uniqueness_of(:email) }
     end
+  end
+
+  describe 'associations' do
+    it { should have_many(:payments) }
   end
 
   describe 'account_balance' do

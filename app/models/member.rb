@@ -3,6 +3,8 @@ class Member < ActiveRecord::Base
 
   before_validation :zero_account_balance, :if => :new_record?
 
+  has_many :payments, :as => :source
+
   validates :account_category, :presence => true
   validates :email, :presence => true, :uniqueness => true
   validates :name, :presence => true
