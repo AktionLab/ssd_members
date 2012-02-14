@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201215121) do
+ActiveRecord::Schema.define(:version => 20120213072744) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -46,29 +46,15 @@ ActiveRecord::Schema.define(:version => 20120201215121) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
-  create_table "due_payments", :force => true do |t|
-    t.integer  "admin_user_id"
-    t.integer  "due_id"
-    t.decimal  "amount",        :precision => 8, :scale => 2
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-  end
-
-  add_index "due_payments", ["admin_user_id"], :name => "index_due_payments_on_admin_user_id"
-  add_index "due_payments", ["due_id"], :name => "index_due_payments_on_due_id"
-
-  create_table "dues", :force => true do |t|
-    t.datetime "date"
-    t.decimal  "business_rate", :precision => 8, :scale => 2
-    t.decimal  "regular_rate",  :precision => 8, :scale => 2
-    t.decimal  "student_rate",  :precision => 8, :scale => 2
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-  end
-
-  create_table "dues_admin_users", :id => false, :force => true do |t|
-    t.integer "admin_user_id"
-    t.integer "due_id"
+  create_table "members", :force => true do |t|
+    t.string   "name",                                                            :null => false
+    t.string   "email",                                                           :null => false
+    t.string   "address"
+    t.string   "phone"
+    t.decimal  "account_balance",  :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.string   "account_category",                                                :null => false
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
   end
 
 end
