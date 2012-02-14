@@ -17,3 +17,10 @@ group :development do
 	gem 'bz-cap-recipes', :git => 'git://github.com/BZLabs/bz_cap_recipes.git'
 	gem 'capistrano'
 end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'spork-rails'
+  gem 'shoulda-matchers'
+end
