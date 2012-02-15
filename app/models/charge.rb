@@ -1,12 +1,12 @@
-class Payment < ActiveRecord::Base
-  belongs_to :payable, :polymorphic => true
+class Charge < ActiveRecord::Base
+  belongs_to :chargeable, :polymorphic => true
 
   before_update :prevent_update
-  after_create :credit_payable
-  after_destroy :debit_payable
+  after_create :debit_chargeable
+  after_destroy :credit_chargeable
 
   validates :amount, :presence => true, :numericality => true
-  validates :payable, :presence => true
+  validates :chargeable, :presence => true
   validate :positive_amount, :on => :create
 
 private
@@ -19,12 +19,12 @@ private
     errors.add(:amount, "can't be modified")
     return false
   end
-  
-  def credit_payable
-    payable.credit(amount)
+
+  def debit_chargeable
+    chargeable.debit(amount)
   end
 
-  def debit_payable
-    payable.debit(amount)
+  def credit_chargeable
+    chargeable.credit(amount)
   end
 end
