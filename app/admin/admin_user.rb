@@ -1,6 +1,4 @@
 ActiveAdmin.register AdminUser do
-  menu :label => 'Members'
-
   filter :email
 
   index do
